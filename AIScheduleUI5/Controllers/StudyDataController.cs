@@ -56,7 +56,8 @@ namespace AIScheduleUI5.Controllers
         {
             try
             {
-                Guid decryptedUserId = _secureService.DecryptSessionGuid(userId);
+                var urlDecoded = Uri.UnescapeDataString(userId);
+                Guid decryptedUserId = _secureService.DecryptSessionGuid(urlDecoded);
                 if (decryptedUserId == null)
                 {
                     return BadRequest("Invalid user ID");

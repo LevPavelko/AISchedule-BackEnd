@@ -76,6 +76,22 @@ namespace AIScheduleUI5.BLL.Services
         {
 
 
+            if (string.IsNullOrWhiteSpace(cipherText))
+                throw new ArgumentException("cipherText is null or empty", nameof(cipherText));
+
+            cipherText = cipherText
+                .Replace('-', '+')
+                .Replace('_', '/');
+
+
+            switch (cipherText.Length % 4)
+            {
+                case 2: cipherText += "=="; break;
+                case 3: cipherText += "="; break;
+                case 0: break;
+                default:
+                    throw new FormatException("Invalid Base64 string length.");
+            }
 
             var key = _config["Session:Secret"];
 

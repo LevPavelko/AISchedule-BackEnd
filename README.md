@@ -1,4 +1,4 @@
-# Diagram of of the project:
+# Diagram of the project:
 
 ![Alt text](Schedule.png)
 
